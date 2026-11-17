@@ -1,4 +1,4 @@
 # Notebooks
 
-按 Colab T4（16GB 显存）规划。命名：`LO-EXP-XXX_简述.ipynb`，与 `experiments/` 中的实验编号对应。
-不要提交大文件（模型权重、激活缓存），用 Google Drive 存放并在 notebook 中写明路径。
+Planned around Google Colab (T4, 16 GB VRAM). Name: `LO-EXP-XXX_brief.ipynb`, matching the experiment number in `experiments/`.
+Do not commit large files (model weights, activation caches). Store them on Google Drive and record the path in the notebook.

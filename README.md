@@ -1,46 +1,38 @@
-# Loop & Orbit
+# Loop & Orbit — Research Hub
 
-Loop & Orbit 是一个本科生研究小组，研究通用 AI agent、强化学习（RL）与博弈中的模型行为。
+Research hub for studying how general-purpose agents make decisions, form strategies, adapt to opponents, and fail in interactive environments. The main instrument is games: they provide a controlled setting for observing decision-making, memory, planning, and adaptation, and a bridge toward embodied settings.
 
-**近期目标**：完成一篇 workshop 论文；同时在公众号上分享阅读笔记与阶段性想法。
+## Status
 
-> 当前阶段：**采集材料、逐步搭建方向**。主线尚未确定，下面两个方向都是候选。
+The main research line is **not yet decided**. Current candidates (see `research/research-questions.md`, from the planning conversation, 2026-11-17):
 
-## 候选方向（未定主线）
+- **A — Strategy formation and opponent adaptation.** How does a general LLM agent form a strategy from an opponent's history, and can it adapt in time when the opponent changes strategy?
+- **B — Reward vs. true goals.** Does a high reward mean the agent actually completed the task? (Reward hacking, specification gaming.)
+- **C — General strategy transfer.** Can decision experience learned in one game help in an unfamiliar game?
+- **D — What are agent scaffolds for?** When do planning, memory, reflection, and opponent modelling help?
+- **E — Multi-agent games and cooperation.** What cooperation, competition, coordination, and group behaviour emerge when several general agents interact?
 
-| 编号 | 方向 | 提出人 | 核心问题（草稿） |
-|---|---|---|---|
-| 空白 A | 内部棋盘表征漂移 | roki | 用探针（probe）检验：通用 LLM 内部的棋盘状态表征是否随对局推进而退化，这种漂移能否解释非法着法？ |
-| A1 | 跨博弈策略迁移 | 同学 | LLM agent 在一个博弈中学到的策略能否迁移到结构相似的另一个博弈？（A2：以适应代价为指标；A3：记忆作为机制变量） |
+Preferred main-line candidate: **A1 — conditions and boundaries of cross-game strategy transfer**, with A2 (cost of adaptation) as an evaluation dimension and A3 (memory helps or hurts) as a mechanism variable. Every candidate must pass the Novelty Gate (`research/novelty-assessment.md`) before it is adopted.
 
-两个方向都需要先完成文献与新颖性检查（见 `docs/literature/`）。
-
-## 研究章程
-
-1. **不编造**：不编造文献、引用或实验结果。每条引用必须能找到原文。
-2. **先查前人工作**：提出问题前先做文献检索，记录已有工作与仍未解决的部分。
-3. **区分事实 / 假设 / 建议**：文档中明确标注哪些是已验证的事实、哪些是待检验的假设、哪些是建议。
-4. **诚实报告负结果**：实验没得到预期结果也要完整记录。
-5. **人来拍板**：研究方向改变、最终结论、任何对外发表的声明都需要小组成员确认。Claude 等 AI 工具写的内容同样遵守以上规则。
-
-## 仓库结构
+## Structure
 
 ```
-docs/
-  literature/   文献矩阵与阅读笔记
-  ideas/        想法卡片（一个想法一个文件）
-experiments/    实验记录，每个实验一个文件夹（复制 _template/）
-notebooks/      Colab notebooks（按 T4 GPU 规划）
-papers/         论文草稿（workshop 投稿）
-blog/           公众号文章（drafts/ 草稿，published/ 已发布）
-meetings/       周会记录
+governance/    Decision rules, AI agent charter, contribution guide, decision log
+research/      Research questions, research map, novelty assessments, open problems, ideas
+literature/    Bibliography, literature matrix, reading notes, related work
+experiments/   Registry, hypotheses, protocols, results (one folder per experiment)
+seminars/      Weekly seminar notes (week-01, week-02, ...)
+publications/  Papers, technical reports, WeChat articles (drafts / published / archive)
+notebooks/     Colab notebooks (T4), named after their experiment
+templates/     Canonical templates (paper reading, experiment, meeting minutes, research idea)
 ```
 
-## 算力
+## Working rules
 
-目前按 Google Colab（T4，16GB 显存）规划实验规模。学校算力之后再接入。
-
-## 成员
-
-- roki（可解释性方向）
-- （同学，RL 与 agent 方向）
+1. **No fabrication.** No invented papers, citations, results, or benchmark numbers. Every citation must be verifiable; every result must trace to an experiment record.
+2. **Check prior work first.** Before proposing a question, search directly related and neighbouring work and record what is established and what is still open.
+3. **Label facts, hypotheses, and recommendations.** Keep them distinct in every document.
+4. **Report negative and inconclusive results honestly.** A null result is a result.
+5. **Humans decide.** Changes of research direction, final experimental conclusions, and any public claim require human approval.
+6. **Important document changes go through a pull request.** AI contributors do not merge to `main` directly, do not change core hypotheses on their own, and do not delete raw data.
+7. **Secrets stay out of the repo.** API keys live in environment variables or GitHub Secrets only — never commit them. Raw experiment logs are kept in non-overwritable versions; large data uses Git LFS or external storage, with version, checksum, and download instructions recorded here.
