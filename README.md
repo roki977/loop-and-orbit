@@ -4,24 +4,27 @@ Research hub for studying how general-purpose agents make decisions, form strate
 
 ## Status
 
-The main research line is **not yet decided**. Current candidates (see `research/research-questions.md`):
+The main research line is **not yet decided**. Current candidates (see `research/research-questions.md`, from the planning conversation, 2026-11-17):
 
-- **A1 — Cross-game strategy transfer.** Can a strategy learned in one game transfer to a structurally similar game? Under what conditions does transfer help, and when does it become negative transfer?
-- **Blank A — Internal board representation drift.** Do a general LLM's internal board-state representations degrade over a game, and can that drift explain illegal moves? (probe-based)
+- **A — Strategy formation and opponent adaptation.** How does a general LLM agent form a strategy from an opponent's history, and can it adapt in time when the opponent changes strategy?
+- **B — Reward vs. true goals.** Does a high reward mean the agent actually completed the task? (Reward hacking, specification gaming.)
+- **C — General strategy transfer.** Can decision experience learned in one game help in an unfamiliar game?
+- **D — What are agent scaffolds for?** When do planning, memory, reflection, and opponent modelling help?
+- **E — Multi-agent games and cooperation.** What cooperation, competition, coordination, and group behaviour emerge when several general agents interact?
 
-Every candidate must pass the Novelty Gate (`research/novelty-assessment.md`) before it is adopted: check the closest prior work first, and do not claim novelty without evidence.
+Preferred main-line candidate: **A1 — conditions and boundaries of cross-game strategy transfer**, with A2 (cost of adaptation) as an evaluation dimension and A3 (memory helps or hurts) as a mechanism variable. Every candidate must pass the Novelty Gate (`research/novelty-assessment.md`) before it is adopted.
 
 ## Structure
 
 ```
-governance/    Decision rules, roles, and publication policy
-research/      Research questions, research map, novelty assessments, open problems, ideas, literature
-experiments/   One folder per experiment (LO-EXP-XXX), copied from templates/
+governance/    Decision rules, AI agent charter, contribution guide, decision log
+research/      Research questions, research map, novelty assessments, open problems, ideas
+literature/    Bibliography, literature matrix, reading notes, related work
+experiments/   Registry, hypotheses, protocols, results (one folder per experiment)
 seminars/      Weekly seminar notes (week-01, week-02, ...)
-publications/  Papers (workshop drafts) and WeChat articles (drafts / published)
+publications/  Papers, technical reports, WeChat articles (drafts / published / archive)
 notebooks/     Colab notebooks (T4), named after their experiment
-templates/     Canonical templates (paper reading, experiment, meeting minutes)
-decision-log.md  Record of decisions, with date, context, and status
+templates/     Canonical templates (paper reading, experiment, meeting minutes, research idea)
 ```
 
 ## Working rules

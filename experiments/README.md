@@ -1,6 +1,10 @@
 # Experiments
 
-One folder per experiment, named `LO-EXP-XXX`. Copy `templates/experiment-template.md` to start a new one.
+- `experiment-registry.md` — every experiment, with status.
+- `hypotheses/` — hypothesis records.
+- `protocols/` — experiment protocols.
+- `results/` — results, including negative results.
+- One folder per experiment (`LO-EXP-XXX`), copied from `templates/experiment-template.md`.
 
 ## Rules
 
