@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+*.pt
+*.safetensors
+*.bin
+data/raw/
+activations/
+.DS_Store
