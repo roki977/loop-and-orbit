@@ -2,9 +2,9 @@
 
 ## Workflow
 
-Issue → Branch → Pull Request → Review → Merge.
+Issue → Branch → Pull Request → Review → Merge — or, for routine changes, a direct push to `main` by Muse with team approval (SD-006, 2026-11-17).
 
-- `main` is protected: no direct pushes; every change goes through a Pull Request; at least one member review is required before merging; AI agents cannot merge to `main`.
+- Significant changes (research direction, core hypotheses, publication claims) go through a Pull Request with member review.
 - Experiment results and data files are not pushed directly to `main`.
 - Every merge has a clear commit message.
 

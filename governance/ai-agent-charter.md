@@ -16,6 +16,7 @@
 | Modify their own branches | Allowed |
 | Create Issues | Allowed |
 | Create Pull Requests | Allowed |
+| Push directly to `main` | Allowed for routine changes, with team approval (SD-006, 2026-11-17) |
 | Auto-merge Pull Requests | Forbidden |
 | Change core research hypotheses | Requires human approval |
 | Delete raw experiment data | Forbidden |

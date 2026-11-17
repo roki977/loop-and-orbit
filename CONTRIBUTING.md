@@ -5,7 +5,7 @@
 1. Open an Issue for the task, question, bug, or idea.
 2. Work on a branch.
 3. Submit a Pull Request and request review.
-4. Merge only after review. `main` is protected: no direct pushes, at least one member review, and AI agents cannot merge to `main`.
+4. Merge only after review. Routine changes may be pushed directly to `main` by Muse with team approval (SD-006); significant changes go through a Pull Request and merge only after review.
 
 ## Rules
 

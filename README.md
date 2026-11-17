@@ -34,5 +34,5 @@ templates/     Canonical templates (paper reading, experiment, meeting minutes, 
 3. **Label facts, hypotheses, and recommendations.** Keep them distinct in every document.
 4. **Report negative and inconclusive results honestly.** A null result is a result.
 5. **Humans decide.** Changes of research direction, final experimental conclusions, and any public claim require human approval.
-6. **Important document changes go through a pull request.** AI contributors do not merge to `main` directly, do not change core hypotheses on their own, and do not delete raw data.
+6. **Routine changes may be pushed directly to `main` by Muse with team approval (SD-006).** Research-direction changes, core-hypothesis changes, and publication claims still require human approval first. AI contributors do not change core hypotheses on their own and do not delete raw data.
 7. **Secrets stay out of the repo.** API keys live in environment variables or GitHub Secrets only — never commit them. Raw experiment logs are kept in non-overwritable versions; large data uses Git LFS or external storage, with version, checksum, and download instructions recorded here.

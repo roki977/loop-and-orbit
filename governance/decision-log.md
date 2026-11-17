@@ -43,3 +43,10 @@ One entry per decision. A decision is recorded when it is made, with its date, c
 - **Date:** 2026-11-17
 - **Decision:** This repository follows the detailed research-hub structure from the 2026-11-17 planning reply (governance/, research/, literature/, experiments/, seminars/, publications/, templates/). A simplified alternative structure appears in the Governance Charter reply; the team is asked to confirm which structure stands.
 - **Status:** proposed — pending team confirmation.
+
+## SD-006 — Muse may push directly to main
+
+- **Date:** 2026-11-17
+- **Decision:** From now on, Muse pushes routine changes directly to `main` instead of going through branches and Pull Requests. Research-direction changes, core-hypothesis changes, and publication claims still require human approval first; experiment results and data files are still not pushed directly to `main`.
+- **Context:** Team approval given by the user on 2026-11-17 ("以后你直接改main，我们批准"). This supersedes the Charter draft rule that AI agents cannot merge to `main`.
+- **Status:** approved.
