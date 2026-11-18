@@ -26,6 +26,6 @@ To be decided after the feasibility study. Proposed testbed: a Coding Agent (cod
 - Execution verification is not absolute truth: low test coverage lets wrong code pass; hidden tests and boundary cases are needed.
 - Training cost: the four-group comparison requires training a model, heavier than the Orbit-01 API-only experiments.
 
-## Status: idea / Novelty Gate screening in progress
+## Status: idea / Novelty Gate screening done — verdict MODIFY (2026-11-19)
 
-Novelty Gate preliminary screening started 2026-11-19 (draft: `novelty-assessment-env-verification-draft.md`). Not adopted as a research direction — direction decisions belong to the human team, and this is a different direction from A1. Do not start coding before the screening verdict.
+Draft: `novelty-assessment-env-verification-draft.md`. The broad question is partly answered: OpenCodeInstruct (Ahmad et al. 2025) already compares LLM-judgment filtering against execution filtering for training data and reports the judge more effective; SSD (Zhang et al. 2026) shows raw unverified self-generated data alone lifts Qwen3-30B 42.4% → 55.3% pass@1 on LiveCodeBench v6. Still open: the controlled four-group factorial with strict equal budgets, and the B-vs-C disagreement analysis as the headline finding. Not adopted as a research direction — direction decisions belong to the human team, and this is a different direction from A1. Do not start coding; the next step would be a full read of OpenCodeInstruct Table 4.
