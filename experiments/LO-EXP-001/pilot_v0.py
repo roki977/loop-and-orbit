@@ -297,16 +297,38 @@ def format_payoff_matrix(game_key: str, swap_labels: bool = False) -> str:
     )
 
 
-def format_history(history: list[dict[str, Any]]) -> str:
+def format_history(
+    history: list[dict[str, Any]],
+    label_map: dict[str, str] | None = None,
+    include_payoff: bool = True,
+) -> str:
     if not history:
         return "(none yet)"
     lines = []
     for h in history:
-        lines.append(
-            f"Round {h['round']}: You chose {h['agent_action']}, "
-            f"Opponent chose {h['opp_action']}, Your payoff = {h['agent_payoff']}"
-        )
+        a_act = label_map.get(h["agent_action"], h["agent_action"]) if label_map else h["agent_action"]
+        o_act = label_map.get(h["opp_action"], h["opp_action"]) if label_map else h["opp_action"]
+        if include_payoff:
+            lines.append(
+                f"Round {h['round']}: You chose {a_act}, "
+                f"Opponent chose {o_act}, Your payoff = {h['agent_payoff']}"
+            )
+        else:
+            lines.append(f"Round {h['round']}: You chose {a_act}, Opponent chose {o_act}")
     return "\n".join(lines)
+
+
+def build_irrelevant_pad(n_rounds: int) -> str:
+    """Length-matched neutral log with no A/B tokens or strategic content."""
+    lines = [
+        f"Entry {r}: Station North logged code M, Station South logged code N, Index value = {r % 4}"
+        for r in range(1, n_rounds + 1)
+    ]
+    return (
+        "Unrelated archival log from another system (note: this log is irrelevant "
+        "to the current session and its payoff structure):\n"
+        + "\n".join(lines)
+    )
 
 
 def build_decision_prompt(
@@ -484,6 +506,13 @@ def main() -> int:
         action="store_true",
         help="Swap action labels A and B in Game B (payoff matrix + opponent actions) to test label vs structural transfer",
     )
+    parser.add_argument(
+        "--conditions",
+        nargs="+",
+        choices=["G0", "G0_PAD", "G1_NO_PAYOFF", "G1_XY", "G1", "G3"],
+        default=["G0", "G1", "G3"],
+        help="Conditions to evaluate (G0 must be included as baseline). E.g.: --conditions G0 G0_PAD G1_NO_PAYOFF G1_XY G1 G3",
+    )
     parser.add_argument("--observability", choices=["hidden", "visible"], default="hidden")
     parser.add_argument("--rounds-a", type=int, default=10)
     parser.add_argument("--rounds-b", type=int, default=10)
@@ -518,6 +547,9 @@ def main() -> int:
     runs_dir.mkdir(parents=True, exist_ok=True)
 
     target_opps = args.target_opps if args.target_opps else [args.target_opp]
+    conditions = list(dict.fromkeys(args.conditions))
+    if "G0" not in conditions:
+        conditions = ["G0"] + conditions
 
     safe_model = re.sub(r"[^A-Za-z0-9._-]+", "_", args.model)
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -549,7 +581,7 @@ def main() -> int:
         "seeds": list(range(args.seeds)),
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
-        "conditions": ["G0", "G1", "G3"],
+        "conditions": conditions,
     }
     (run_dir / "config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
 
@@ -559,7 +591,7 @@ def main() -> int:
     early_n = config["early_window"]
 
     per_seed_results: dict[str, dict[str, list[dict[str, Any]]]] = {
-        opp: {"G0": [], "G1": [], "G3": []} for opp in target_opps
+        opp: {c: [] for c in conditions} for opp in target_opps
     }
 
     with raw_log_path.open("w", encoding="utf-8") as log_f:
@@ -568,7 +600,7 @@ def main() -> int:
             log_f.flush()
 
         for seed in config["seeds"]:
-            # 1) Run Game A once per seed to produce shared source experience for G1 & G3
+            # 1) Run Game A once per seed to produce shared source experience
             hist_a, stats_a = run_session(
                 client=client,
                 session_label="Session 1",
@@ -583,41 +615,54 @@ def main() -> int:
                 swap_labels=False,
             )
 
-            # 2) Extract G3 rules from Game A
-            extract_prompt = (
-                "You just completed Session 1 with the following history:\n"
-                + format_history(hist_a)
-                + "\n\nWrite 2-4 concise strategic rules based on this experience."
-            )
-            rule_resp = client.chat(RULE_EXTRACTION_SYSTEM_PROMPT, extract_prompt, seed=seed * 1000 + 999)
-            write_event({
-                "event_type": "rule_extraction",
-                "condition": "G3",
-                "seed": seed,
-                "rules_text": rule_resp.content,
-                "prompt_tokens": rule_resp.prompt_tokens,
-                "completion_tokens": rule_resp.completion_tokens,
-                "response_model": rule_resp.response_model,
-                "latency_s": rule_resp.latency_s,
-            })
+            # 2) Extract G3 rules from Game A (only if G3 is requested)
+            rule_resp: LLMResponse | None = None
+            if "G3" in conditions:
+                extract_prompt = (
+                    "You just completed Session 1 with the following history:\n"
+                    + format_history(hist_a)
+                    + "\n\nWrite 2-4 concise strategic rules based on this experience."
+                )
+                rule_resp = client.chat(RULE_EXTRACTION_SYSTEM_PROMPT, extract_prompt, seed=seed * 1000 + 999)
+                write_event({
+                    "event_type": "rule_extraction",
+                    "condition": "G3",
+                    "seed": seed,
+                    "rules_text": rule_resp.content,
+                    "prompt_tokens": rule_resp.prompt_tokens,
+                    "completion_tokens": rule_resp.completion_tokens,
+                    "response_model": rule_resp.response_model,
+                    "latency_s": rule_resp.latency_s,
+                })
 
             prior_blocks = {
                 "G0": "",
+                "G0_PAD": build_irrelevant_pad(len(hist_a)),
+                "G1_NO_PAYOFF": (
+                    "Action sequence from a previous session (payoffs omitted; note: the new "
+                    "session may have a different payoff structure or opponent):\n"
+                    + format_history(hist_a, include_payoff=False)
+                ),
                 "G1": (
                     "Full transcript from a previous session (note: the new session may "
                     "have a different payoff structure or opponent):\n"
                     + format_history(hist_a)
                 ),
+                "G1_XY": (
+                    "Full transcript from a previous session (actions were labelled X and Y; "
+                    "note: the new session may have a different payoff structure or opponent):\n"
+                    + format_history(hist_a, label_map={"A": "X", "B": "Y"})
+                ),
                 "G3": (
                     "Extracted strategy rules from a previous session (note: the new session "
                     "may have a different payoff structure or opponent):\n"
-                    + rule_resp.content.strip()
+                    + (rule_resp.content.strip() if rule_resp else "")
                 ),
             }
 
-            # 3) Run Game B under G0, G1, G3 for each target opponent
+            # 3) Run Game B under requested conditions for each target opponent
             for target_opp in target_opps:
-                for cond in ("G0", "G1", "G3"):
+                for cond in conditions:
                     hist_b, stats_b = run_session(
                         client=client,
                         session_label="Session 2",
@@ -635,8 +680,8 @@ def main() -> int:
                     early_payoff = sum(payoffs_b[:early_n]) / early_n
                     full_payoff = sum(payoffs_b) / len(payoffs_b)
                     adapt_round = compute_adaptation_speed(hist_b, target_opt)
-                    extra_p = rule_resp.prompt_tokens if cond == "G3" else 0
-                    extra_c = rule_resp.completion_tokens if cond == "G3" else 0
+                    extra_p = rule_resp.prompt_tokens if (cond == "G3" and rule_resp) else 0
+                    extra_c = rule_resp.completion_tokens if (cond == "G3" and rule_resp) else 0
 
                     per_seed_results[target_opp][cond].append({
                         "seed": seed,
@@ -655,7 +700,7 @@ def main() -> int:
     summary_rows: list[dict[str, Any]] = []
     for target_opp in target_opps:
         g0_rows = per_seed_results[target_opp]["G0"]
-        for cond in ("G0", "G1", "G3"):
+        for cond in conditions:
             rows = per_seed_results[target_opp][cond]
             n = len(rows)
             mean_early = sum(r["early_payoff_b"] for r in rows) / n

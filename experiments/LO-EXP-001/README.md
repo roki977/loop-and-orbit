@@ -40,11 +40,12 @@ python3 experiments/LO-EXP-001/pilot_v0.py --backend mock --seeds 3 --rounds-a 6
 export OPENAI_API_KEY="your-key-here"
 export OPENAI_BASE_URL="https://api.deepseek.com/v1"   # or OpenAI / OpenRouter / Gemini compat URL
 
-# Standard labels, 2 target opponents, 5 seeds
+# Full 6-condition 2x2 mechanism decomposition (visible or hidden)
 python3 experiments/LO-EXP-001/pilot_v0.py \
   --backend openai_compat \
   --model deepseek-chat \
   --observability visible \
+  --conditions G0 G0_PAD G1_NO_PAYOFF G1_XY G1 G3 \
   --target-opps tft_coop always_a \
   --seeds 5 --temperature 0.3 \
   --rounds-a 10 --rounds-b 10 --early-window 5
@@ -103,20 +104,64 @@ All runs below used `source_game = pd (vs always_b)` → `target_game = stag_hun
 | Swapped (`swap=True`) | `always_a` | `G1` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
 | Swapped (`swap=True`) | `always_a` | `G3` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
 
+### Run Set C — 6-Condition $2 \times 2$ Mechanism Decomposition: `visible` vs `hidden` (`temperature = 0.3`, `seeds = 5`)
+
+Conditions decompose **context length**, **surface action-label overlap (`A/B`)**, and **payoff/experience content**:
+- `G0`: No memory baseline
+- `G0_PAD`: Length-matched unrelated archival log (controls for prompt length without `A/B` or payoff content)
+- `G1_NO_PAYOFF`: Action sequence from Game A with payoffs stripped (surface `A/B` symbols only)
+- `G1_XY`: Full Game A transcript with actions renamed `A → X, B → Y` (payoff experience without `A/B` symbol overlap)
+- `G1`: Full Game A transcript (`A/B` symbols + payoffs)
+- `G3`: Model-extracted strategic rules from Game A
+
+- **`visible` run** — `run_id: 20261120T122742Z_openai_compat_deepseek-chat_visible`
+- **`hidden` run** — `run_id: 20261120T124220Z_openai_compat_deepseek-chat_hidden`
+
+| Observability | Target Opp | Cond | Early(5) Payoff | Early Gain | Early NTR | Full Payoff | Full Gain | Adapt Round | Parse Err |
+|---|---|---|---|---|---|---|---|---|---|
+| `visible` | `tft_coop` | `G0` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `visible` | `tft_coop` | `G0_PAD` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `visible` | `tft_coop` | `G1_NO_PAYOFF` | **1.440** | **-2.560** | **1.00** | **1.260** | **-2.740** | **11.00 (0/5)** | 0 |
+| `visible` | `tft_coop` | `G1_XY` | 3.800 | -0.200 | 0.20 | 3.900 | -0.100 | 1.20 (5/5) | 0 |
+| `visible` | `tft_coop` | `G1` | **1.640** | **-2.360** | **1.00** | **1.620** | **-2.380** | **9.40 (1/5)** | 0 |
+| `visible` | `tft_coop` | `G3` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `visible` | `always_a` | `G0` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `visible` | `always_a` | `G0_PAD` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `visible` | `always_a` | `G1_NO_PAYOFF` | **3.000** | **-1.000** | **1.00** | **3.000** | **-1.000** | **11.00 (0/5)** | 0 |
+| `visible` | `always_a` | `G1_XY` | 3.960 | -0.040 | 0.20 | 3.980 | -0.020 | 1.20 (5/5) | 0 |
+| `visible` | `always_a` | `G1` | **3.000** | **-1.000** | **1.00** | **3.000** | **-1.000** | **11.00 (0/5)** | 0 |
+| `visible` | `always_a` | `G3` | 3.760 | -0.240 | 0.40 | 3.780 | -0.220 | 3.20 (4/5) | 0 |
+| `hidden` | `tft_coop` | `G0` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `hidden` | `tft_coop` | `G0_PAD` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `hidden` | `tft_coop` | `G1_NO_PAYOFF` | **1.520** | **-2.480** | **1.00** | **1.300** | **-2.700** | **11.00 (0/5)** | 0 |
+| `hidden` | `tft_coop` | `G1_XY` | **2.000** | **-2.000** | **0.80** | **1.800** | **-2.200** | **9.00 (1/5)** | 0 |
+| `hidden` | `tft_coop` | `G1` | **1.440** | **-2.560** | **1.00** | **1.220** | **-2.780** | **11.00 (0/5)** | 0 |
+| `hidden` | `tft_coop` | `G3` | **1.600** | **-2.400** | **1.00** | **1.300** | **-2.700** | **11.00 (0/5)** | 0 |
+| `hidden` | `always_a` | `G0` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `hidden` | `always_a` | `G0_PAD` | 4.000 | +0.000 | 0.00 | 4.000 | +0.000 | 1.00 (5/5) | 0 |
+| `hidden` | `always_a` | `G1_NO_PAYOFF` | **3.240** | **-0.760** | **1.00** | **3.320** | **-0.680** | **7.80 (2/5)** | 0 |
+| `hidden` | `always_a` | `G1_XY` | 3.760 | -0.240 | 0.40 | 3.780 | -0.220 | 3.20 (4/5) | 0 |
+| `hidden` | `always_a` | `G1` | **3.000** | **-1.000** | **1.00** | **3.000** | **-1.000** | **11.00 (0/5)** | 0 |
+| `hidden` | `always_a` | `G3` | 3.560 | -0.440 | 1.00 | 3.780 | -0.220 | 3.20 (5/5) | 0 |
+
 **Negative / Null Results Recorded Honestly:**
-- **H2 on `G3` under `visible` + 5 seeds (`temperature = 0.3`) was NOT supported:** Although `G3` showed negative transfer in the single-seed `temperature = 0.0` probe (`1.200`), across 5 seeds at `temperature = 0.3` `G3` achieved `4.000` (5/5 adapted on Round 1) against both `tft_coop` and `always_a`.
-- **Under `swap_target_labels = True`, negative transfer vanished completely for all conditions (`G0 = G1 = G3 = 4.000`, NTR = `0.00`).**
+- **Prompt length alone had zero effect:** `G0_PAD` achieved `4.000` (5/5 adapted on Round 1) across all 4 `(observability, opponent)` cells.
+- **Under `visible` + 5 seeds (`temperature = 0.3`), `G3` largely avoided negative transfer** (`4.000`, 5/5 on `tft_coop`; `3.780`, 4/5 on `always_a`), contrasting with the single-seed `temperature = 0.0` probe (`1.200`) and demonstrating why fixed temperature and multi-seed evaluation are mandatory.
+- **Under `swap_target_labels = True` (`visible`), negative transfer vanished completely for all conditions (`G0 = G1 = G3 = 4.000`, NTR = `0.00`).**
 
 ---
 
 ## Conclusions (labelled: fact / hypothesis / recommendation; human confirmation required)
 
-- **Fact:** On `deepseek-flash` (`observability = visible`, `temperature = 0.3`, 5 seeds), raw history (`G1`) produced **100% negative transfer (5/5 seeds)** against both `tft_coop` (Full Payoff `1.280` vs `G0` `4.000`, `0/5` adapted) and `always_a` (Full Payoff `3.100` vs `G0` `4.000`, `1/5` adapted), whereas extracted rules (`G3`) showed **0% negative transfer** (`4.000`, `5/5` adapted).
-- **Fact:** Swapping Game B action labels (`swap_target_labels = True`) eliminated `G1`'s negative transfer completely (`4.000`, `5/5` adapted for both opponents), while `G0` remained at `4.000` (ruling out a simple alphabetical preference for `"A"` in `G0`).
-- **Interpretation / Hypothesis (to be tested further):**
-  1. *Episodic Anchoring vs. Rule Abstraction:* Long raw transcripts (`G1`) appear to anchor the model strongly to the surface action symbol `"B"` from Session 1, overriding visible payoff-matrix reasoning; by contrast, distilled rules (`G3`) act as a softer prior that the model more readily overrides when the new payoff matrix is visible.
-  2. *Surface Action-Label Binding:* The complete disappearance of `G1` negative transfer under label swapping suggests `G1`'s failure is driven primarily by literal symbol binding (`"B"` = safe) rather than abstract equilibrium-selection transfer (Risk-Dominance over Payoff-Dominance).
+- **Fact:** Across both `visible` and `hidden` modes on `deepseek-flash` (`temperature = 0.3`, 5 seeds), length-matched irrelevant padding (`G0_PAD`) produced **0% negative transfer** (`4.000`, 5/5), ruling out pure context-length distraction.
+- **Fact (Double Dissociation across Observability):**
+  1. **When the payoff matrix is `visible`:** Raw action history (`G1`: `1.620`, 1/5 on `tft_coop`; `3.000`, 0/5 on `always_a`) and payoff-stripped action sequences (`G1_NO_PAYOFF`: `1.260`, 0/5 on `tft_coop`; `3.000`, 0/5 on `always_a`) both induced severe negative transfer, whereas renaming prior actions to `X/Y` (`G1_XY`: `3.900`, 5/5; `3.980`, 5/5) and rule abstraction (`G3`: `4.000`, 5/5; `3.780`, 4/5) nearly eliminated it.
+  2. **When the payoff matrix is `hidden`:** Both `G1_XY` (`1.800`, 1/5 on `tft_coop`) and `G3` (`1.300`, 0/5 on `tft_coop`) also suffered severe negative transfer against `tft_coop`, and exhibited delayed adaptation (`3.20` rounds) against `always_a` (while `G1` remained completely locked at `3.000`, 0/5 even against `always_a`).
+- **Interpretation / Hypothesis (to be tested across models and games):**
+  1. *Surface Action-Label Anchoring (`visible`):* Under transparent payoffs, `G1`'s negative transfer is driven primarily by literal symbol co-occurrence (`"B"`), not payoff-derived strategy — proved by `G1_NO_PAYOFF` matching `G1`'s failure and `G1_XY` almost fully rescuing performance.
+  2. *Analogical / Rule-Level Negative Transfer (`hidden`):* When the target payoff table is hidden, raw logs show `G1_XY` explicitly mapping the second symbol (`Y`) analogically to the second action (`B`) in Session 2, and `G3` following its extracted rule — producing beyond-surface negative transfer when coordination with `tft_coop` is required.
+- **Scope Limitations (Fact):** All results so far come from **one model (`deepseek-flash`)**, **one game pair (`PD → Stag Hunt`)**, and **5 seeds per cell**. No cross-model or general claim is justified yet.
 - **Recommendation (pending human team review):**
-  1. Run the same 5-seed multi-opponent + label-swap protocol under `--observability hidden` to test whether `G3` also suffers negative transfer when the new payoff matrix is not directly visible.
-  2. Replicate on at least one second model family (e.g., GPT / Claude / Qwen) and add a length-matched irrelevant-context control before drawing cross-model claims.
-  3. Do not update `experiment-registry.md` or push experimental conclusions to `main` until the human team reviews these findings.
+  1. Replicate Run Set C (`visible` + `hidden`, 6 conditions) on at least **one second model family** (e.g., GPT / Claude / Qwen) and expand to $\ge 10$ seeds.
+  2. Expand game pairs (e.g., Harmony, Chicken, reverse direction cooperative → adversarial) and add a mid-session regime-switching opponent for A2 adaptation cost.
+  3. Complete nearest-neighbour entries in `literature/literature-matrix.csv` before updating `experiment-registry.md` or merging to `main`.
