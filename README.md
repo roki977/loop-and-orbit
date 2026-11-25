@@ -25,7 +25,14 @@ seminars/      Weekly seminar notes (week-01, week-02, ...)
 publications/  Papers, technical reports, WeChat articles (drafts / published / archive)
 notebooks/     Colab notebooks (T4), named after their experiment
 templates/     Canonical templates (paper reading, experiment, meeting minutes, research idea)
+demo/          Interactive math atlas demo (standalone HTML + review notes)
 ```
+
+## Interactive math atlas demo
+
+`demo/index.html` is a standalone, bilingual interactive atlas of 41 mathematical ideas behind machine learning, from maximum likelihood estimation to self-play. It contains 41 live canvas modules, a 41-node / 47-bridge concept map with derivation formulas, five guided learning paths, and per-card references. Open the file directly in a browser (CDN access required) or serve the folder locally; use the **Language: EN** button for English.
+
+`demo/README.md` documents how to run it and its known limitations. `demo/REVIEW.md` is an assessment of the demo and of its explanatory/reference apparatus, with verified facts, judgements, and recommendations kept separate. The demo file is kept byte-identical to the supplied artifact; no research claims are made from it.
 
 ## Working rules
 
