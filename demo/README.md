@@ -2,6 +2,8 @@
 
 A zero-build, single-file interactive atlas of 41 mathematical ideas behind machine learning, from maximum likelihood estimation to self-play. This directory contains the demo **unchanged** from the supplied artifact (`Loop & Orbit.html`, copied here as `index.html`), plus documentation.
 
+**Positioning:** this is a supporting, just-in-time reference platform for general mathematical background — not this repository's research focus and not a research output. Much of its content is standard textbook material; see `INTRO.md` for the scope boundary and who it is for.
+
 - **Open it:** double-click `demo/index.html`, or serve the folder locally with `python3 -m http.server 8000` and visit `http://localhost:8000/demo/`.
 - **Language:** the page starts in Chinese. Use the **Language: EN** button in the header to switch to English; the choice is remembered in `localStorage`.
 - **Internet required:** Tailwind CSS (Play CDN), KaTeX 0.16.11, and Google Fonts are loaded from CDNs. There is no build step, no package manager, and no local asset bundle.
@@ -21,6 +23,7 @@ Most modules compute real quantities (Beta-Binomial posterior via a Lanczos log-
 
 ## Documentation
 
+- `INTRO.md` - project introduction: role, scope boundary, intended audience, and what this artifact is not.
 - `REVIEW.md` - an English assessment of the demo and of its explanatory/reference apparatus, separated into verified facts, judgements, and recommendations.
 - `index.html` - the demo itself. Intentionally not reformatted or refactored.
 

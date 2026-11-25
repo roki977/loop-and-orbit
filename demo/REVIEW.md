@@ -4,7 +4,7 @@
 **Scope:** `demo/index.html` (single-file demo, 648,993 bytes, ~6,370 lines) - the teaching design, the explanations, the reference apparatus, and the implementation as it affects both.
 **Method:** static source inspection; headless Chrome (Playwright) load, language toggle, slider/filter/node/edge interaction, and per-card DOM audit; HTTP status check of every unique external content link; arXiv metadata cross-check of all 10 cited papers.
 
-This document follows the repository convention of separating **facts** (verified), **assessment** (judgement), and **recommendations** (not yet implemented). It evaluates a demo artifact; it is not a research result or a publication claim.
+This document follows the repository convention of separating **facts** (verified), **assessment** (judgement), and **recommendations** (not yet implemented). It evaluates a demo artifact; it is not a research result or a publication claim. Most of the mathematics covered here is general textbook background, not this repository's research focus; see `INTRO.md` for the scope boundary.
 
 ---
 

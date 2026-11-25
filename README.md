@@ -2,6 +2,8 @@
 
 Research hub for studying how general-purpose agents make decisions, form strategies, adapt to opponents, and fail in interactive environments. The main instrument is games: they provide a controlled setting for observing decision-making, memory, planning, and adaptation, and a bridge toward embodied settings.
 
+A supporting interactive math reference platform lives in `demo/`: it is a just-in-time companion for looking up general mathematical background behind the literature, and is not part of the research line described below.
+
 ## Status
 
 The main research line is **not yet decided**. Current candidates (see `research/research-questions.md`, from the planning conversation, 2026-11-17):
@@ -25,14 +27,16 @@ seminars/      Weekly seminar notes (week-01, week-02, ...)
 publications/  Papers, technical reports, WeChat articles (drafts / published / archive)
 notebooks/     Colab notebooks (T4), named after their experiment
 templates/     Canonical templates (paper reading, experiment, meeting minutes, research idea)
-demo/          Interactive math atlas demo (standalone HTML + review notes)
+demo/          Supporting interactive math reference platform (standalone HTML + docs)
 ```
 
-## Interactive math atlas demo
+## Interactive math atlas demo (supporting reference platform)
+
+**Positioning:** this directory is a companion for looking up and building intuition about mathematical background, not part of the research line described above. Most of its 41 modules cover general, textbook-level principles (maximum likelihood, Bayes, KL divergence, PCA, gradient descent, Bellman equations, and so on); they are included so that papers, seminar notes, and experiment logs are easier to read. Nothing here is a research result, a dataset, or a publication claim, and the atlas is not a citable source for research conclusions.
 
 `demo/index.html` is a standalone, bilingual interactive atlas of 41 mathematical ideas behind machine learning, from maximum likelihood estimation to self-play. It contains 41 live canvas modules, a 41-node / 47-bridge concept map with derivation formulas, five guided learning paths, and per-card references. Open the file directly in a browser (CDN access required) or serve the folder locally; use the **Language: EN** button for English.
 
-`demo/README.md` documents how to run it and its known limitations. `demo/REVIEW.md` is an assessment of the demo and of its explanatory/reference apparatus, with verified facts, judgements, and recommendations kept separate. The demo file is kept byte-identical to the supplied artifact; no research claims are made from it.
+Documentation: `demo/INTRO.md` explains the project's role and scope boundary; `demo/README.md` covers how to run it and its known limitations; `demo/REVIEW.md` is an assessment of the demo and its explanatory/reference apparatus, with verified facts, judgements, and recommendations kept separate. The demo file is kept byte-identical to the supplied artifact; no research claims are made from it.
 
 ## Working rules
 
