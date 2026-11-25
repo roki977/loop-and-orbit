@@ -34,6 +34,8 @@ demo/          Supporting interactive math reference platform (standalone HTML +
 
 **Positioning:** this directory is a companion for looking up and building intuition about mathematical background, not part of the research line described above. Most of its 41 modules cover general, textbook-level principles (maximum likelihood, Bayes, KL divergence, PCA, gradient descent, Bellman equations, and so on); they are included so that papers, seminar notes, and experiment logs are easier to read. Nothing here is a research result, a dataset, or a publication claim, and the atlas is not a citable source for research conclusions.
 
+**Live preview (shareable):** https://loop-orbit-math-atlas.app.workbuddy.host/?sharecode=F7Q47T7DKL — opens the demo directly in a browser, no GitHub account or local setup needed.
+
 `demo/index.html` is a standalone, bilingual interactive atlas of 41 mathematical ideas behind machine learning, from maximum likelihood estimation to self-play. It contains 41 live canvas modules, a 41-node / 47-bridge concept map with derivation formulas, five guided learning paths, and per-card references. Open the file directly in a browser (CDN access required) or serve the folder locally; use the **Language: EN** button for English.
 
 Documentation: `demo/INTRO.md` explains the project's role and scope boundary; `demo/README.md` covers how to run it and its known limitations; `demo/REVIEW.md` is an assessment of the demo and its explanatory/reference apparatus, with verified facts, judgements, and recommendations kept separate. The demo file is kept byte-identical to the supplied artifact; no research claims are made from it.
