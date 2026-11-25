@@ -1,0 +1,13 @@
+target_opp,condition,swap_target_labels,seeds,early_payoff_B,early_transfer_gain,early_negative_transfer_rate,mean_payoff_B,full_transfer_gain,full_negative_transfer_rate,mean_adaptation_round,adapted_seeds,total_prompt_tokens_B,total_completion_tokens_B,parse_errors_B
+tft_coop,G0,False,5,4.0,0.0,0.0,4.0,0.0,0.0,1.0,5/5,13945,1767,0
+tft_coop,G0_PAD,False,5,4.0,0.0,0.0,4.0,0.0,0.0,1.0,5/5,26095,1702,0
+tft_coop,G1_NO_PAYOFF,False,5,1.44,-2.56,1.0,1.26,-2.74,1.0,11.0,0/5,21695,2310,0
+tft_coop,G1_XY,False,5,3.8,-0.2,0.2,3.9,-0.1,0.2,1.2,5/5,24845,1891,0
+tft_coop,G1,False,5,1.64,-2.36,1.0,1.62,-2.38,1.0,9.4,1/5,24495,2125,0
+tft_coop,G3,False,5,4.0,0.0,0.0,4.0,0.0,0.0,1.0,5/5,20395,2266,0
+always_a,G0,False,5,4.0,0.0,0.0,4.0,0.0,0.0,1.0,5/5,13945,1706,0
+always_a,G0_PAD,False,5,4.0,0.0,0.0,4.0,0.0,0.0,1.0,5/5,26095,1741,0
+always_a,G1_NO_PAYOFF,False,5,3.0,-1.0,1.0,3.0,-1.0,1.0,11.0,0/5,21695,2014,0
+always_a,G1_XY,False,5,3.96,-0.04,0.2,3.98,-0.02,0.2,1.2,5/5,24845,1860,0
+always_a,G1,False,5,3.0,-1.0,1.0,3.0,-1.0,1.0,11.0,0/5,24495,1909,0
+always_a,G3,False,5,3.76,-0.24,0.4,3.78,-0.22,0.4,3.2,4/5,20395,2321,0

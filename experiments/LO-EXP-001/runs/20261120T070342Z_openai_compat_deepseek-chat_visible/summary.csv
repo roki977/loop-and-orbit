@@ -1,0 +1,4 @@
+condition,seeds,early_payoff_B,early_transfer_gain,early_negative_transfer_rate,mean_payoff_B,full_transfer_gain,full_negative_transfer_rate,mean_adaptation_round,adapted_seeds,total_prompt_tokens_B,total_completion_tokens_B,parse_errors_B
+G0,1,4.0,0.0,0.0,4.0,0.0,0.0,1.0,1/1,2789,344,0
+G1,1,1.4,-2.6,1.0,1.2,-2.8,1.0,11.0,0/1,4899,461,0
+G3,1,1.4,-2.6,1.0,1.2,-2.8,1.0,11.0,0/1,4059,528,0

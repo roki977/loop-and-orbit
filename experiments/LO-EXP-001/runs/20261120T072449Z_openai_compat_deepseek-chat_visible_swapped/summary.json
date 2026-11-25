@@ -1,0 +1,519 @@
+{
+  "config": {
+    "experiment_id": "LO-EXP-001-pilot-v0",
+    "run_id": "20261120T072449Z_openai_compat_deepseek-chat_visible_swapped",
+    "created_utc": "20261120T072449Z",
+    "git_commit": "a1664ce",
+    "backend": "openai_compat",
+    "model": "deepseek-chat",
+    "base_url": "https://api.deepseek.com/v1",
+    "source_game": "pd",
+    "source_opp": "always_b",
+    "target_game": "stag_hunt",
+    "target_opps": [
+      "tft_coop",
+      "always_a"
+    ],
+    "swap_target_labels": true,
+    "observability": "visible",
+    "rounds_a": 10,
+    "rounds_b": 10,
+    "early_window": 5,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "temperature": 0.3,
+    "max_tokens": 128,
+    "conditions": [
+      "G0",
+      "G1",
+      "G3"
+    ]
+  },
+  "summary": [
+    {
+      "target_opp": "tft_coop",
+      "condition": "G0",
+      "swap_target_labels": true,
+      "seeds": 5,
+      "early_payoff_B": 4.0,
+      "early_transfer_gain": 0.0,
+      "early_negative_transfer_rate": 0.0,
+      "mean_payoff_B": 4.0,
+      "full_transfer_gain": 0.0,
+      "full_negative_transfer_rate": 0.0,
+      "mean_adaptation_round": 1.0,
+      "adapted_seeds": "5/5",
+      "total_prompt_tokens_B": 13945,
+      "total_completion_tokens_B": 1807,
+      "parse_errors_B": 0
+    },
+    {
+      "target_opp": "tft_coop",
+      "condition": "G1",
+      "swap_target_labels": true,
+      "seeds": 5,
+      "early_payoff_B": 4.0,
+      "early_transfer_gain": 0.0,
+      "early_negative_transfer_rate": 0.0,
+      "mean_payoff_B": 4.0,
+      "full_transfer_gain": 0.0,
+      "full_negative_transfer_rate": 0.0,
+      "mean_adaptation_round": 1.0,
+      "adapted_seeds": "5/5",
+      "total_prompt_tokens_B": 24495,
+      "total_completion_tokens_B": 1865,
+      "parse_errors_B": 0
+    },
+    {
+      "target_opp": "tft_coop",
+      "condition": "G3",
+      "swap_target_labels": true,
+      "seeds": 5,
+      "early_payoff_B": 4.0,
+      "early_transfer_gain": 0.0,
+      "early_negative_transfer_rate": 0.0,
+      "mean_payoff_B": 4.0,
+      "full_transfer_gain": 0.0,
+      "full_negative_transfer_rate": 0.0,
+      "mean_adaptation_round": 1.0,
+      "adapted_seeds": "5/5",
+      "total_prompt_tokens_B": 20395,
+      "total_completion_tokens_B": 2124,
+      "parse_errors_B": 0
+    },
+    {
+      "target_opp": "always_a",
+      "condition": "G0",
+      "swap_target_labels": true,
+      "seeds": 5,
+      "early_payoff_B": 4.0,
+      "early_transfer_gain": 0.0,
+      "early_negative_transfer_rate": 0.0,
+      "mean_payoff_B": 4.0,
+      "full_transfer_gain": 0.0,
+      "full_negative_transfer_rate": 0.0,
+      "mean_adaptation_round": 1.0,
+      "adapted_seeds": "5/5",
+      "total_prompt_tokens_B": 13945,
+      "total_completion_tokens_B": 1821,
+      "parse_errors_B": 0
+    },
+    {
+      "target_opp": "always_a",
+      "condition": "G1",
+      "swap_target_labels": true,
+      "seeds": 5,
+      "early_payoff_B": 4.0,
+      "early_transfer_gain": 0.0,
+      "early_negative_transfer_rate": 0.0,
+      "mean_payoff_B": 4.0,
+      "full_transfer_gain": 0.0,
+      "full_negative_transfer_rate": 0.0,
+      "mean_adaptation_round": 1.0,
+      "adapted_seeds": "5/5",
+      "total_prompt_tokens_B": 24495,
+      "total_completion_tokens_B": 1864,
+      "parse_errors_B": 0
+    },
+    {
+      "target_opp": "always_a",
+      "condition": "G3",
+      "swap_target_labels": true,
+      "seeds": 5,
+      "early_payoff_B": 4.0,
+      "early_transfer_gain": 0.0,
+      "early_negative_transfer_rate": 0.0,
+      "mean_payoff_B": 4.0,
+      "full_transfer_gain": 0.0,
+      "full_negative_transfer_rate": 0.0,
+      "mean_adaptation_round": 1.0,
+      "adapted_seeds": "5/5",
+      "total_prompt_tokens_B": 20395,
+      "total_completion_tokens_B": 2112,
+      "parse_errors_B": 0
+    }
+  ],
+  "per_seed": {
+    "tft_coop": {
+      "G0": [
+        {
+          "seed": 0,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 347,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 1,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 355,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 2,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 361,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 3,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 369,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 4,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 375,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        }
+      ],
+      "G1": [
+        {
+          "seed": 0,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 383,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 1,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 376,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 2,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 375,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 3,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 364,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 4,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 367,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        }
+      ],
+      "G3": [
+        {
+          "seed": 0,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4109,
+          "completion_tokens_b": 416,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 1,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4569,
+          "completion_tokens_b": 506,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 2,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 3909,
+          "completion_tokens_b": 415,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 3,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 3949,
+          "completion_tokens_b": 416,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 4,
+          "target_opp": "tft_coop",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 3859,
+          "completion_tokens_b": 371,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        }
+      ]
+    },
+    "always_a": {
+      "G0": [
+        {
+          "seed": 0,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 369,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 1,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 355,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 2,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 357,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 3,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 364,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 4,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 2789,
+          "completion_tokens_b": 376,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        }
+      ],
+      "G1": [
+        {
+          "seed": 0,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 376,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 1,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 361,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 2,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 383,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 3,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 368,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 4,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4899,
+          "completion_tokens_b": 376,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        }
+      ],
+      "G3": [
+        {
+          "seed": 0,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4109,
+          "completion_tokens_b": 393,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 1,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 4569,
+          "completion_tokens_b": 504,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 2,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 3909,
+          "completion_tokens_b": 414,
+          "source_a_mean_payoff": 0.9,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 3,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 3949,
+          "completion_tokens_b": 440,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        },
+        {
+          "seed": 4,
+          "target_opp": "always_a",
+          "early_payoff_b": 4.0,
+          "mean_payoff_b": 4.0,
+          "adaptation_round": 1,
+          "parse_errors_b": 0,
+          "prompt_tokens_b": 3859,
+          "completion_tokens_b": 361,
+          "source_a_mean_payoff": 0.8,
+          "source_a_parse_errors": 0
+        }
+      ]
+    }
+  }
+}
