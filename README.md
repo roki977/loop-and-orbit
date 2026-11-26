@@ -36,9 +36,11 @@ The root `index.html` is a small redirect that lets GitHub Pages serve the demo 
 
 **Positioning:** this directory is a companion for looking up and building intuition about mathematical background, not part of the research line described above. Most of its 41 modules cover general, textbook-level principles (maximum likelihood, Bayes, KL divergence, PCA, gradient descent, Bellman equations, and so on); they are included so that papers, seminar notes, and experiment logs are easier to read. Nothing here is a research result, a dataset, or a publication claim, and the atlas is not a citable source for research conclusions.
 
-**Live demo:** https://roki977.github.io/loop-and-orbit/ — GitHub Pages entry point, redirecting to `demo/index.html`. To enable it, open Settings → Pages → Build and deployment, set Source to "Deploy from a branch", Branch to `main`, and Folder to `/ (root)`.
+**Live demo (no account or repository settings required):** https://raw.githack.com/roki977/loop-and-orbit/main/demo/index.html — serves `demo/index.html` directly from this repository. A first visit shows a one-time "Open the page" confirmation from the host; subsequent visits and refreshes go straight to the atlas. No build step, no admin permission, and the link follows future changes to `main`.
 
-**Temporary mirror:** https://loop-orbit-math-atlas.app.workbuddy.host/?sharecode=F7Q47T7DKL — the same files on a hosted share URL, usable until Pages is enabled.
+**Alternative mirror:** https://loop-orbit-math-atlas.app.workbuddy.host/?sharecode=F7Q47T7DKL — the same content on a hosted share URL, without the confirmation step.
+
+**Optional GitHub Pages entry:** the root `index.html` redirects to `demo/index.html`. If repository admin access becomes available, enable Pages in Settings → Pages → Build and deployment (Source: Deploy from a branch, Branch `main`, Folder `/ (root)`) to serve https://roki977.github.io/loop-and-orbit/.
 
 `demo/index.html` is a standalone, bilingual interactive atlas of 41 mathematical ideas behind machine learning, from maximum likelihood estimation to self-play. It contains 41 live canvas modules, a 41-node / 47-bridge concept map with derivation formulas, five guided learning paths, and per-card references. Open the file directly in a browser (CDN access required) or serve the folder locally; use the **Language: EN** button for English.
 
